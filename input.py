@@ -1,4 +1,4 @@
-yoursEmail = ['aakibalam0808@gmail.com', 'pmayank20@iitk.ac.in', 'akashb20@iitk.ac.in', 'navneets20@iitk.ac.in']
-friendsList = ['PRO_fessor_', 'Mayank_Pushpjeet', 'udhavvarma03', 'fahad_', 'satyam343', 'recurecurring', 'sultan__', 'onetap']
-my_emailId = 'ashmia789@gmail.com'
-password = 'roudqcfssverhyjq'
+yoursEmail = ['your email 1', 'your email 2',.....]
+friendsList = ['Friend 1 username','Friend 2 username','Friend 3 username',...] #codeforces username
+my_emailId = 'Enter Your Gmail'
+password = 'Enter Your Gmail generated App Password'
