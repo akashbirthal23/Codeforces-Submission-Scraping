@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 options = webdriver.ChromeOptions()
-options.add_argument('headless')
+# options.add_argument('headless')
 options.add_experimental_option('detach', True)
 driver = webdriver.Chrome(options=options)
 driver.maximize_window()
@@ -130,10 +130,6 @@ me = input.my_emailId
 pwd = input.password
 you = input.yoursEmail
 
-msg = MIMEMultipart('alternative')
-msg['Subject'] = "Spies Report for " + str(yesterday)
-msg['From'] = me
-
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader('template'))
 
 jinja_var = {
@@ -143,7 +139,6 @@ jinja_var = {
 template = jinja_env.get_template('MailBody.html')
 html = template.render(jinja_var)
 part2 = MIMEText(html, 'html')
-msg.attach(part2)
 
 s = smtplib.SMTP('smtp.gmail.com', 587)
 s.starttls()
@@ -152,6 +147,14 @@ s.login(me, pwd)
 
 
 for user in you:
-    msg['To'] = user
-    s.sendmail(me, user, msg.as_string())
+    # Create a new MIMEMultipart object for each recipient
+    msg_individual = MIMEMultipart('alternative')
+    msg_individual['Subject'] = "Spies Report for " + str(yesterday)
+    msg_individual['From'] = me
+    msg_individual['To'] = user
+
+    # Attach the HTML part and any other parts to msg_individual
+    msg_individual.attach(part2)
+    # Send the email for the current recipient
+    s.sendmail(me, user, msg_individual.as_string())
 s.quit()
